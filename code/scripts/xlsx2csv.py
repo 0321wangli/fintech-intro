@@ -1,7 +1,7 @@
 import pandas as pd
 
-input_file = "..\\data\\assignment_1_data.xlsx"
-output_path = "..\\data\\"
+input_file = "../data/assignment_1_data.xlsx"
+output_path = "../data/"
 
 xls = pd.ExcelFile(input_file)
 sheet_names = xls.sheet_names
