@@ -6,10 +6,11 @@ from portfolio_analysis.utils import (
     print_result,
     print_result_optimized,
     plot_portfolio_value,
-    plot_portfolio_risk_contribution
+    plot_portfolio_risk_contribution,
+    plot_weights,
+    plot_portfolio_comparison
 )
 from optimize.erc import optimize_erc
-from scripts import test_cov_corr
 
 # Setup
 initial_capital = 1_000_000
@@ -46,10 +47,20 @@ print("------- Part2-a -------")
 print_result(portfolio_period1, 'Period 1', 'data/portfolio_value_period1.csv')
 print_result(portfolio_period2, 'Period 2', 'data/portfolio_value_period2.csv')
 
+# Plot portfolio risk contribution
+portfolios = [portfolio_period1, portfolio_period2]
+plot_portfolio_risk_contribution(portfolios)
+
 # Process and print results b
 print("\n\n\n------- Part2-b -------")
 portfolio_period1_optimal = print_result_optimized(portfolio_period1, 'Period 1')
 portfolio_period2_optimal = print_result_optimized(portfolio_period2, 'Period 2')
+
+# Plot weights of the portfolio in period 1
+plot_weights(portfolio_period1_optimal)
+
+# Compare equal weight portfolio with equal risk contribution portfolio in period 2
+plot_portfolio_comparison(portfolio_period2, portfolio_period2_optimal)
 
 # Create New Asset objects for each period
 assets_period1_new = [Asset(name, period1, weight) for name, weight in zip(asset_names_new, weights_new)]
@@ -60,7 +71,7 @@ portfolio_period1_new = Portfolio(assets_period1_new)
 portfolio_period2_new = Portfolio(assets_period2_new)
 
 # Process and print results bonus
-print("\n\n\n------- Part2-bonus -------")
+print("\n\n\n------- Bonus -------")
 print_result(portfolio_period1_new, 'Period 1', 'data/portfolio_value_period1_new.csv')
 print_result(portfolio_period2_new, 'Period 2', 'data/portfolio_value_period2_new.csv')
 

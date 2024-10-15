@@ -1,0 +1,10 @@
+**.pdf
+**.xlsx
+**.csv
+**/__pycache__/
+!/data/stock_prices_p2.csv
+/temp
+/scripts
+
+
+
